@@ -16,19 +16,10 @@ class FileInputForm extends Component {
         var fileReader = new FileReader();
         fileReader.readAsText(event.target.files[0]);
         fileReader.onload = function(event) {
-            var fileText = event.target.result;
-            var rows = fileText.split('\n');
-            var header = rows[0];
-            var data = [];
-            for (var i = 1; i < rows.length; i++) {
-                data.push(rows[i].split(','));
-            }
+            var data = new CsvParser().parseFileContents(event.target.result);
 
             that.setState({
-                Data: {
-                    Header: header.split(','),
-                    Data: data
-                }
+                Data: data
             });
         };
     }

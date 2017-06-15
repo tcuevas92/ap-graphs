@@ -1,17 +1,6 @@
 
 class CsvParser {
-    constructor(fileReader, callback) {
-        this.fileReader = new FileReader();
-        this.callback = callback;
-    }
-
-    parse(file) {
-        this.fileReader.readAsText(file);
-        this.fileReader.onload = this.parseFileContents;
-    }
-
-    parseFileContents(event) {
-        var fileText = event.target.result;
+    parseFileContents(fileText) {
         var rows = fileText.split('\n');
         var header = rows[0];
         var data = [];
