@@ -4,45 +4,22 @@ import CsvParser from '../Utilities/CsvParser.js';
 import DataTable from './DataTable.js';
 
 class FileInputForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            Data: null
-        };
-    }
-
     onChange(event) {
-        var that = this;
+        var reactContext = this;
         var fileReader = new FileReader();
         fileReader.readAsText(event.target.files[0]);
         fileReader.onload = function(event) {
             var data = new CsvParser().parseFileContents(event.target.result);
-
-            that.setState({
-                Data: data
-            });
+            reactContext.props.onFileParsed(data);
         };
     }
 
     render() {
-        var needsData = !this.state.Data;
-
         return (
-            <div>
-                {
-                    needsData && 
-                        <form encType="multipart/formdata">
-                        <label htmlFor="FileInput">File</label>
-                        <input type="file" accept=".csv" onChange={(event) => this.onChange(event)}/>
-                    </form>
-                }
-
-                {
-                    !needsData &&
-                    <DataTable data={this.state.Data} />
-                }
-            </div>
-           
+            <form encType="multipart/formdata">
+                <label htmlFor="FileInput">File</label>
+                <input type="file" accept=".csv" onChange={(event) => this.onChange(event)}/>
+            </form>
         );
     }
 }
