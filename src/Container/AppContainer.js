@@ -3,7 +3,7 @@ import App from '../App.js';
 
 const mapStateToProps = state => {
     return {
-        selectedFile: state.SelectedFile
+        fileData: state.FileData
     };
 }
 

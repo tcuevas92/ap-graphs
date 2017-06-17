@@ -16,9 +16,13 @@ class FileInputForm extends Component {
 
     render() {
         return (
-            <form encType="multipart/formdata">
-                <label htmlFor="FileInput">File</label>
-                <input type="file" accept=".csv" onChange={(event) => this.onChange(event)}/>
+            <form className="form-horizontal" encType="multipart/formdata">
+                <div className="form-group">
+                    <label className="control-label col-sm-2" htmlFor="FileInput">File</label>
+                    <div className="col-sm-4">
+                        <input className="form-control" type="file" accept=".csv" onChange={(event) => this.onChange(event)}/>
+                    </div>
+                </div>
             </form>
         );
     }
