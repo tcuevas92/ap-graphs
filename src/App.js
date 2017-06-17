@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
-          {this.props.fileData ? <ResultsView data={this.props.fileData} /> : <FileInputFormContainer />}
+          {this.props.fileData ? <ResultsView /> : <FileInputFormContainer />}
         </div>
       </div>
     );

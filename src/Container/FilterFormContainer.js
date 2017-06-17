@@ -4,7 +4,7 @@ import FilterForm from '../Component/FilterForm.js';
 
 const mapStateToProps = state => {
     return {
-        selectedColumns: state.SelectedColumns
+        filters: state.Filters
     };
 }
 

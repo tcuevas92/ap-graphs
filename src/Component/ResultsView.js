@@ -8,10 +8,10 @@ class ResultsView extends Component {
         return(
             <div className="row">
                 <div className="col-md-3">
-                   <FilterFormContainer headerValues={this.props.data.Header} />
+                   <FilterFormContainer />
                 </div>
                 <div className="col-md-9">
-                    <DataTableContainer data={this.props.data} />
+                    <DataTableContainer />
                 </div>
             </div>
         );

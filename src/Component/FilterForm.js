@@ -17,19 +17,15 @@ class FilterForm extends Component {
         this.props.setSelectedColumns(selectedColumns);
     }
 
-    isChecked(headerValue) {
-        return this.props.selectedColumns.indexOf(headerValue) > -1;
-    }
-
     render() {
         return (
              <form onSubmit={(e) => this.handleSubmit(e)}>                        
                 {
-                    this.props.headerValues.map((header) => 
+                    this.props.filters.map((filter) => 
                         <div className="checkbox text-left">
                             <label>
-                                <input type="checkbox" value={header} defaultChecked={() => this.isChecked(header)} />
-                                {header}
+                                <input type="checkbox" value={filter.Title} defaultChecked={filter.Enabled} />
+                                {filter.Title}
                             </label>
                         </div>
                     )

@@ -3,7 +3,7 @@ import DataTable from '../Component/DataTable.js';
 
 const mapStateToProps = state => {
     return {
-        selectedColumns: state.SelectedColumns
+        filteredData: state.FilteredData
     };
 }
 
