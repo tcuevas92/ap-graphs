@@ -1,4 +1,4 @@
-import { FILE_CHANGED, SET_SELECTED_COLUMNS } from '../Actions/ActionCreator.js';
+import { FILE_CHANGED, UPDATE_FILTER } from '../Actions/ActionCreator.js';
 import DataFilterer from '../Utilities/DataFilterer.js';
 
 const initialState = {
@@ -24,12 +24,13 @@ function app(state = initialState, action) {
                     }
                 })
             });
-        case SET_SELECTED_COLUMNS:
+        case UPDATE_FILTER:
             var filters = state.Filters.map(function(filter) {
-                var newFilter = Object.assign({}, filter);
-                newFilter.Enabled = action.selectedColumns.indexOf(newFilter.Title) > -1;
+                if (filter.Title === action.filter.Title) {
+                    return action.filter;
+                }
 
-                return newFilter;
+                return filter;
             });
             return Object.assign({}, state, {
                 Filters: filters,

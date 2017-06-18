@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setSelectedColumns } from '../Actions/ActionCreator.js';
+import { updateFilter } from '../Actions/ActionCreator.js';
 import FilterForm from '../Component/FilterForm.js';
 
 const mapStateToProps = state => {
@@ -10,8 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps  = dispatch => {
     return {
-        setSelectedColumns: data => {
-            dispatch(setSelectedColumns(data));
+        updateFilter: data => {
+            dispatch(updateFilter(data));
         }
     };
 }

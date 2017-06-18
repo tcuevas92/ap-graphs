@@ -1,5 +1,5 @@
 export const FILE_CHANGED = 'FILE_CHANGED';
-export const SET_SELECTED_COLUMNS = 'SET_SELECTED_COLUMNS';
+export const UPDATE_FILTER = 'UPDATE_FILTER';
 
 export function fileChanged(parsedFileData) {
     return {
@@ -8,9 +8,9 @@ export function fileChanged(parsedFileData) {
     };
 }
 
-export function setSelectedColumns(selectedColumns) {
+export function updateFilter(filter) {
     return {
-        type: SET_SELECTED_COLUMNS,
-        selectedColumns: selectedColumns
+        type: UPDATE_FILTER,
+        filter: filter
     };
 }

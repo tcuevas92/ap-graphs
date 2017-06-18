@@ -1,4 +1,4 @@
-import { FILE_CHANGED, SET_SELECTED_COLUMNS } from '../Actions/ActionCreator.js';
+import { FILE_CHANGED, UPDATE_FILTER } from '../Actions/ActionCreator.js';
 import subject from '../Reducers/Reducer.js'
 
 it ('should return initial state by default', () => {
@@ -86,7 +86,7 @@ it ('should set create Filters that are enabled with data passed in with FILE_CH
     ]);
 });
 
-it ('should set filters with SET_SELECTED_COLUMNS action', () => {
+it ('should merge new filter into Filters list with UPDATE_FILTER action', () => {
     var state = {
         FileData: {
             Header: ['a','b'],
@@ -107,51 +107,26 @@ it ('should set filters with SET_SELECTED_COLUMNS action', () => {
         ]
     };
     var action = {
-        type: SET_SELECTED_COLUMNS,
-        selectedColumns: ['a']
+        type: UPDATE_FILTER,
+        filter: {
+            Title: 'a',
+            Enabled: true,
+            Max: 100,
+            Min: 10
+        }
     };
 
     var result = subject(state, action);
     expect(result.Filters).toEqual([
         {
             Title: 'a',
-            Enabled: true
+            Enabled: true,
+            Max: 100,
+            Min: 10
         },
-         {
+        {
             Title: 'b',
-            Enabled: false
+            Enabled: true
         }
     ]);
-});
-
-it ('should set FilteredData with SET_SELECTED_COLUMNS action', () => {
-    var state = {
-        Filters: [
-            {
-                Title: 'a',
-                Enabled: true
-            }
-        ],
-        FileData: {
-            Header: ['a','b'],
-            Data: [
-                [1,2],
-                [3,4]
-            ]
-        }
-    };
-    var action = {
-        type: SET_SELECTED_COLUMNS,
-        selectedColumns: ['a']
-    };
-
-    var result = subject(state, action);
-   
-    expect(result.FilteredData).toEqual({
-        Header: ['a'],
-        Data: [
-            [1],
-            [3]
-        ]
-    });
 });

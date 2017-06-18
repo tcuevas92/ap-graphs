@@ -1,6 +1,12 @@
 
 class DataFilterer {
     filter(filters, fileData) {
+        fileData = this.removeDisabledColumns(filters, fileData);
+        fileData = this.applyNumericFilters(filters, fileData);
+        return fileData;
+    }
+
+    removeDisabledColumns (filters, fileData) {
         var enabledColumnIndices = [];
         fileData.Header.forEach(function(header, index) {
             var filter = filters.find(function(f) {
@@ -25,8 +31,31 @@ class DataFilterer {
         return fileData;
     }
 
-    removeDisabledColumns (value, index) {
-        
+    applyNumericFilters(filters, fileData) {
+        var columnIndexToFilterMap = fileData.Header.map(function(header, index) {
+            return filters.find(function(filter) {
+                return filter.Title === header && filter.Enabled;
+            });
+        });
+
+        fileData.Data = fileData.Data.filter(function(row) {
+            return row.every(function(value, index) {
+                var isValid = true;
+                var filter = columnIndexToFilterMap[index];
+
+                if (filter.Max !== null && filter.Max !== undefined && filter.Max !== "") {
+                    isValid = parseFloat(value) < parseFloat(filter.Max);
+                }
+
+                if (isValid && filter.Min !== null && filter.Min !== undefined && filter.Min !== "") {
+                    isValid = parseFloat(value) > parseFloat(filter.Min);
+                }
+
+                return isValid;
+            });
+        });
+
+        return fileData;
     }
 }
 
