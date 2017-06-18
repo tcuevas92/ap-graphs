@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Styles/DataTable.css';
 
 class DataTable extends Component {
     render() {
@@ -6,14 +7,14 @@ class DataTable extends Component {
             <table className="table">
                 <thead>
                     <tr>
-                        {this.props.filteredData.Header.map((value) => <th>{value}</th>)}
+                        {this.props.filteredData.Header.map((value, index) => <th title={value} key={'header' + index}>{value}</th>)}
                     </tr>
                 </thead>
                 <tbody>
                     {
                         this.props.filteredData.Data.map((value, index) =>
-                            <tr>
-                                {value.map((inner, innerIndex) => <td>{inner}</td>)}
+                            <tr key={'row-' + index}>
+                                {value.map((inner, innerIndex) => <td key={'row-' + index + '-column-' + innerIndex}>{inner}</td>)}
                             </tr>
                         )
                     }

@@ -12,7 +12,7 @@ class Navbar extends Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="#">ap-graphs</a>
+                    <a className="navbar-brand" href="javscript:void(0);">ap-graphs</a>
                     </div>
                 </div>
             </nav>

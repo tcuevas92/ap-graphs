@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import CsvParser from '../Utilities/CsvParser.js';
-import DataTable from './DataTable.js';
 
 class FileInputForm extends Component {
     onChange(event) {

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class FilterForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
-        var selectedColumns = [];
         
         var inputs = Array.from(e.target.elements);
         var checkbox = inputs.find(function(input) {
@@ -31,7 +30,7 @@ class FilterForm extends Component {
         return (
             <div className="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 {this.props.filters.map((filter, index) => 
-                    <div className="panel panel-default">
+                    <div key={'filter-' + index} className="panel panel-default">
                         <div className="panel-heading" role="tab" id={"heading-" + index}>
                             <h4 className="panel-title text-left">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse-" + index} aria-expanded="true" aria-controls="collapseOne">
@@ -45,7 +44,7 @@ class FilterForm extends Component {
                                     {
                                         <div>
                                             <div className="checkbox text-left">
-                                                <label htmlFor="enabled">
+                                                <label>
                                                     <input type="checkbox" name="enabled" value={filter.Title} defaultChecked={filter.Enabled} />
                                                     Show data points
                                                 </label>
