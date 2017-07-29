@@ -7,8 +7,21 @@ import { createStore } from 'redux'
 import app from './Reducers/Reducer.js'
 import './index.css';
 
+const store = createStore(app, getState());
+
+window.addEventListener('beforeunload', persistState);
+
+function persistState() {
+    localStorage.ReduxState = JSON.stringify(store.getState());
+}
+
+function getState() {
+    if (localStorage.ReduxState)
+        return JSON.parse(localStorage.ReduxState);
+}
+
 ReactDOM.render(
-    <Provider store={createStore(app)}>
+    <Provider store={store}>
         <AppContainer />
     </Provider>,
     document.getElementById('root')
