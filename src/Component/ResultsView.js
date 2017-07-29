@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import DataTableContainer from '../Container/DataTableContainer.js';
 import FilterFormContainer from '../Container/FilterFormContainer.js';
-import ChartView from './ChartView.js';
+import ChartViewContainer from '../Container/ChartViewContainer.js';
+import '../Styles/ResultsView.css';
 
 class ResultsView extends Component {
     buildTab(path, title) {
@@ -17,8 +18,6 @@ class ResultsView extends Component {
     }
 
     render() {
-        const { match } = this.props;
-
         return(
             <div className="row">
                 <div className="col-md-3">
@@ -31,7 +30,7 @@ class ResultsView extends Component {
                     </ul>
 
                     <Route path="/Results/Table" component={DataTableContainer} />
-                    <Route path="/Results/Charts" component={ChartView} />
+                    <Route path="/Results/Charts" component={ChartViewContainer} />
                 </div>
             </div>
         );
