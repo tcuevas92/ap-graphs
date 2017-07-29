@@ -20,7 +20,7 @@ class FileInputForm extends Component {
 
     render() {
         if (this.state.inputProcessed) {
-            return <Redirect push to="/Results" />
+            return <Redirect push to="/Results/Table" />
         }
 
         return (
