@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import CsvParser from '../Utilities/CsvParser.js';
+import { Redirect } from 'react-router-dom';
 
 class FileInputForm extends Component {
+    state = {
+        inputProcessed: false
+    }
+
     onChange(event) {
         var reactContext = this;
         var fileReader = new FileReader();
@@ -9,10 +14,15 @@ class FileInputForm extends Component {
         fileReader.onload = function(event) {
             var data = new CsvParser().parseFileContents(event.target.result);
             reactContext.props.onFileParsed(data);
+            reactContext.setState({inputProcessed: true});
         };
     }
 
     render() {
+        if (this.state.inputProcessed) {
+            return <Redirect push to="/Results" />
+        }
+
         return (
             <form className="form-horizontal" encType="multipart/formdata">
                 <div className="form-group">
